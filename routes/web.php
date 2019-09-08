@@ -22,4 +22,7 @@ Route::post('importExcel', 'CandidateController@importExcel');
 
 Route::get('candidate/{id}/edit', 'CandidateController@edit');
 Route::get('candidate/{id}/delete', 'CandidateController@destroy');
+Route::get('candidate/delete/{id}', 'CandidateController@destroy');
 Route::post('candidate/update', 'CandidateController@update');
+
+Route::get('datatable', 'CandidateController@index',);

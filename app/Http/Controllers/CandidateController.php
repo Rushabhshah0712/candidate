@@ -8,9 +8,28 @@ use Excel;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use DataTables;
 
 class CandidateController extends Controller
 {
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            // return 150;
+            $data = candidate::all();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                    $edit = '<a  class="btn-primary btn-sm edit" style="color: white" id="'.$row->id.'" >Edit</a>';
+                    $delete ='<a href="candidate/'.$row->id.'/delete"  class="edit btn3d btn-danger btn-sm">Delete</a>';
+                        return $edit.$delete;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+      
+        return view('usingdatatable');
+    }
 
     public function importExport()
     {
@@ -92,5 +111,18 @@ class CandidateController extends Controller
         else{
             return back()->with('error', 'somthing wont wrong');
         }
+    }
+    public function delete($id){
+        // return 150;
+        $data = candidate::withTrashed()->findOrFail($id);
+        if(!$data->trashed()){
+            $data->delete();
+            return back()->with('success', 'Delete Record successfully.');
+          }
+          else {
+            $data->forceDelete();
+          }
+          return back();
+       
     }
 }
