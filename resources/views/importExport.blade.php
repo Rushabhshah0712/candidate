@@ -51,7 +51,7 @@
                <th scope="col">Higher Education</th>
                <th scope="col">Action</th>
                <th></th>
-               <th></th>
+               {{-- <th></th> --}}
             </tr>
          </thead>
          <tbody>
@@ -69,7 +69,7 @@
             {{-- <td><a  class="edit btn btn-info btn-sm view" style="color: white"  id="{{$value->id}}" data-toggle="modal" data-target="#myModal" >view</a></td> --}}
              <td><a  class="btn-primary btn-sm edit" style="color: white" id="{{$value->id}}" >Edit</a></td>
              <td><a href="candidate/{{ $value->id }}/delete"  class="btn3d btn-danger btn-sm">delete</a></td>
-             <td><a href="candidate/delete/{{ $value->id }}"  class="btn3d btn-danger btn-sm">permanent_delete</a></td>
+             {{-- <td><a href="candidate/delete/{{ $value->id }}"  class="btn3d btn-danger btn-sm">permanent_delete</a></td> --}}
             </tr>
             @endforeach
          </tbody>
